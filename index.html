@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Search Engine Interface</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://cse.google.com/cse.js?cx=d5ccd916f0d4241a8"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Multi-Search Engine Interface</h1>
+        <div class="search-bar">
+            <div class="search-info">
+                <div id="search-engine-info">
+                    Please select a search engine.
+                </div>
+                <select id="search-engine" onchange="toggleSearchBox()">
+                    <option value="select-engine">Choose</option>
+                    <option value="google">Google</option>
+                    <option value="gemini">Gemini</option>
+                    <option value="wikipedia">Wikipedia</option>
+                </select>
+            </div>
+            <div id="custom-search" style="display: none;">
+                <input type="text" id="search-query" placeholder="Enter your search query...">
+                <button onclick="performSearch()">Search</button>
+            </div>
+            <div id="google-search-box" style="display: none;">
+                <gcse:searchbox-only></gcse:searchbox-only>
+            </div>
+        </div>
+        <div class="results">
+            <div id="google-results" class="gcse-searchresults-only"></div>
+            <ul id="results-list"></ul>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
