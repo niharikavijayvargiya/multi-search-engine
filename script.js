@@ -15,7 +15,6 @@ function toggleSearchBox() {
     }
 }
 
-// Other functions remain the same...
 
 function performSearch() {
     const query = document.getElementById('search-query').value;
@@ -28,7 +27,6 @@ function performSearch() {
         alert('Please enter a search query.');
         return;
     }
-
     if (engine === 'google') {
         const googleSearchInput = document.querySelector('.gsc-input');
         googleSearchInput.value = query;
@@ -40,29 +38,69 @@ function performSearch() {
         searchWikipedia(query);
     }
 }
+async function searchGemini(query) {
+    displayGeminiResults("Please wait...");
+    // Define the request body
+    const requestBody = {
+        contents: [{
+            parts: [{
+                text: query
+            }]
+        }]
+    };
 
-function searchGemini(query) {
-    // Fetch data from the Gemini API
-    fetch(`https://api.gemini.com/search?q=${query}`)
-        .then(response => response.json())
-        .then(data => {
-            // Process the response data and display the search results
-            const results = processData(data);
-            displayResults(results);
-        })
-        .catch(error => {
-            console.error('Error fetching Gemini data:', error);
+    try {
+        const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyDN40DfPeXOLG7vpu16SYWrFkpZgyaLABU', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
         });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+        const results = processGeminiData(data);
+        displayGeminiResults(results);
+    } catch (error) {
+        console.error('Error fetching Gemini data:', error);
+    }
+}
+function displayGeminiResults(text) {
+    const resultsList = document.getElementById('results-list');
+
+    resultsList.innerHTML = '';
+
+    const container = document.createElement('div');
+
+    container.classList.add('gemini-text');
+
+    const sections = text.split('\n\n');
+
+    sections.forEach(section => {
+        const sectionElement = document.createElement('div');
+        if (section.startsWith('**')) {
+            sectionElement.classList.add('heading');
+            section = section.substring(2, section.length - 2);
+            sectionElement.textContent = section;
+            sectionElement.innerHTML = '<br>' + sectionElement.innerHTML;
+        } else {
+            sectionElement.classList.add('paragraph');
+            sectionElement.innerHTML = section.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        }
+
+        container.appendChild(sectionElement);
+    });
+
+    resultsList.appendChild(container);
 }
 
-function processData(data) {
-    // Process the response data as needed
-    // Here, we'll assume that the response contains an array of search results objects
-    return data.results.map(result => ({
-        title: result.title,
-        snippet: result.snippet,
-        link: result.link
-    }));
+function processGeminiData(data) {
+    const content = data.candidates[0]?.content?.parts?.[0]?.text;
+    return content || "No content found";
 }
 
 
@@ -77,12 +115,12 @@ function searchWikipedia(query) {
                 snippet: item.snippet,
                 link: `https://en.wikipedia.org/wiki/${item.title}`
             }));
-            displayResults(results);
+            displayWikiResults(results);
         })
         .catch(error => console.error('Error:', error));
 }
 
-function displayResults(results) {
+function displayWikiResults(results) {
     const resultsList = document.getElementById('results-list');
     results.forEach(result => {
         const li = document.createElement('li');
