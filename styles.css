@@ -118,10 +118,8 @@ button {
 .google-image img {
     width: 100%;
     max-width: 600px;
-    height: auto;
     border-radius: 8px;
 }
-
 /* Custom styles for Google CSE suggestion box */
 .gsc-completion-container {
     position: absolute !important;
@@ -140,7 +138,7 @@ button {
 }
 
 .help-text {
-    margin-top: -50px;
+    /* margin-top: -50px; */
     font-size: 50px;
     margin-bottom: 50px;
     color: #70757a; /* Gray text color */
