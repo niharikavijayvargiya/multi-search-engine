@@ -3,7 +3,6 @@ body {
     margin: 0;
     padding: 0;
 }
-
 .index-background::before {
     content: "";
     position: absolute;
@@ -15,6 +14,9 @@ body {
     background-size: 50%; /* Adjust the size as needed */
     opacity: 0.2; /* Adjust the opacity to make it lighter */
     z-index: -1; /* Ensure it stays behind all content */
+}
+.wikipedia-background {
+    background-image: url('https://images.unsplash.com/photo-1629196911514-cfd8d628ba26?q=80&w=3699&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3DD');
 }
 
 .container {
@@ -164,23 +166,6 @@ button {
 
 .results li:hover {
     background-color: #eaeaea;
-}
-
-.google-background {
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.gemini-background {
-    background-image: url('path_to_gemini_image.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-.wikipedia-background {
-    background-image: url('https://images.unsplash.com/photo-1629196911514-cfd8d628ba26?q=80&w=3699&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3DD');
-    background-size: cover;
-    background-repeat: no-repeat;
 }
 
 .engine-image img {
