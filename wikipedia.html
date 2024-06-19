@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wikipedia Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="wikipedia-background">
+    <div class="container">
+        <div class="google-image">
+            <img src="./images/wikii logo.png" alt="Wikipedia Image">
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-query" placeholder="Enter your search query...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <div class="results">
+            <ul id="results-list"></ul>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('popstate', (event) => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script async src="https://cse.google.com/cse.js?cx=d5ccd916f0d4241a8"></script>
+</head>
+<body class="google-background">
+    <div class="container">
+        <div class="google-image">
+            <img src="https://duet-cdn.vox-cdn.com/thumbor/0x0:2012x1341/1200x800/filters:focal(1006x670:1007x671):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/15483559/google2.0.0.1441125613.jpg" alt="Google Image">
+        </div>
+        <div class="google-search-bar">
+            <gcse:searchbox-only></gcse:searchbox-only>
+        </div>
+        <div class="results">
+            <div id="google-results" class="gcse-searchresults-only"></div>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('popstate', (event) => {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

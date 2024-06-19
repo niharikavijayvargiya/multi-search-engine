@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemini Search</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body class="gemini-background">
+    <div class="container">
+        <div class="google-image">
+            <img src="./images/gemini.png" alt="Gemini Image">
+        </div>
+        <h1 class="help-text">How may I help you?</h1>
+        <div class="columns">
+            <div class="column" id="javascript-column">
+                <h2>Explain JavaScript</h2>
+            </div>
+            <div class="column" id="java-column">
+                <h2>Explain Java</h2>
+            </div>
+            <div class="column" id="gemini-column">
+                <h2>Explain Google Gemini</h2>
+            </div>
+        </div>
+        <div class="search-bar">
+            <input type="text" id="search-query" placeholder="Enter your search query...">
+            <button onclick="performSearch()">Search</button>
+        </div>
+        <div class="results">
+            <ul id="results-list"></ul>
+        </div>
+    </div>
+    <script>
+        window.addEventListener('popstate', (event) => {
+            window.location.href = 'index.html';
+        });
+
+        // Add event listeners to columns
+        document.getElementById('javascript-column').addEventListener('click', () => {
+            document.getElementById('search-query').value = 'Explain JavaScript';
+            performSearch();
+        });
+
+        document.getElementById('java-column').addEventListener('click', () => {
+            document.getElementById('search-query').value = 'Explain Java';
+            performSearch();
+        });
+
+        document.getElementById('gemini-column').addEventListener('click', () => {
+            document.getElementById('search-query').value = 'Explain Google Gemini';
+            performSearch();
+        });
+    </script>
+</body>
+</html>

@@ -1,46 +1,28 @@
-function toggleSearchBox() {
-    const searchEngine = document.getElementById('search-engine').value;
-    const searchEngineInfo = document.getElementById('search-engine-info');
-    const customSearch = document.getElementById('custom-search');
-    const googleSearchBox = document.getElementById('google-search-box');
 
-    if (searchEngine === 'select-engine') {
-        searchEngineInfo.textContent = 'Please select a search engine.';
-        customSearch.style.display = 'none';
-        googleSearchBox.style.display = 'none';
-    } else {
-        searchEngineInfo.textContent = `Searching is based on ${searchEngine}.`;
-        customSearch.style.display = searchEngine === 'google' ? 'none' : 'block';
-        googleSearchBox.style.display = searchEngine === 'google' ? 'block' : 'none';
-    }
-}
 
+// Assuming this is on your main page (index.html)
 
 function performSearch() {
     const query = document.getElementById('search-query').value;
-    const engine = document.getElementById('search-engine').value;
-    const resultsList = document.getElementById('results-list');
+    const engine = document.body.classList.contains('gemini-background') ? 'gemini' : 'wikipedia';
 
+    const resultsList = document.getElementById('results-list');
     resultsList.innerHTML = '';
 
     if (!query) {
         alert('Please enter a search query.');
         return;
     }
-    if (engine === 'google') {
-        const googleSearchInput = document.querySelector('.gsc-input');
-        googleSearchInput.value = query;
-        const googleSearchButton = document.querySelector('.gsc-search-button');
-        googleSearchButton.click();
-    } else if (engine === 'gemini') {
+
+    if (engine === 'gemini') {
         searchGemini(query);
     } else if (engine === 'wikipedia') {
         searchWikipedia(query);
     }
 }
 async function searchGemini(query) {
-    displayGeminiResults("Please wait...");
-    // Define the request body
+    displayGeminiResults("Please wait"); // Initial message
+
     const requestBody = {
         contents: [{
             parts: [{
@@ -67,33 +49,53 @@ async function searchGemini(query) {
         displayGeminiResults(results);
     } catch (error) {
         console.error('Error fetching Gemini data:', error);
+        displayGeminiResults("Error occurred. Please try again."); // Display error message
     }
 }
+
 function displayGeminiResults(text) {
     const resultsList = document.getElementById('results-list');
-
     resultsList.innerHTML = '';
 
     const container = document.createElement('div');
-
     container.classList.add('gemini-text');
 
-    const sections = text.split('\n\n');
+    // Check if text starts with "Please wait"
+    if (text.startsWith("Please wait")) {
+        const waitMessage = document.createElement('p1');
+        waitMessage.textContent = text;
+        waitMessage.style.fontSize = '30px'; // Increase font size for "Please wait"
+        waitMessage.style.color = '#70757a'; // Gray text color
+        container.appendChild(waitMessage);
 
-    sections.forEach(section => {
-        const sectionElement = document.createElement('div');
-        if (section.startsWith('**')) {
-            sectionElement.classList.add('heading');
-            section = section.substring(2, section.length - 2);
-            sectionElement.textContent = section;
-            sectionElement.innerHTML = '<br>' + sectionElement.innerHTML;
-        } else {
-            sectionElement.classList.add('paragraph');
-            sectionElement.innerHTML = section.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-        }
+        let dotCount = 0;
+        const interval = setInterval(() => {
+            dotCount = (dotCount % 3) + 1; // Cycle through 3 dots
+            waitMessage.textContent = `${text}${'.'.repeat(dotCount)}`;
+        }, 500); // Interval for adding dots (500ms)
 
-        container.appendChild(sectionElement);
-    });
+        // Stop interval when content is loaded
+        window.addEventListener('load', () => {
+            clearInterval(interval);
+            waitMessage.textContent = "Content loaded."; // Replace with loaded message
+        });
+    } else {
+        // Display regular content
+        const sections = text.split('\n\n');
+        sections.forEach(section => {
+            const sectionElement = document.createElement('div');
+            if (section.startsWith('**')) {
+                sectionElement.classList.add('heading');
+                section = section.substring(2, section.length - 2);
+                sectionElement.textContent = section;
+                sectionElement.innerHTML = '<br>' + sectionElement.innerHTML;
+            } else {
+                sectionElement.classList.add('paragraph');
+                sectionElement.innerHTML = section.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            }
+            container.appendChild(sectionElement);
+        });
+    }
 
     resultsList.appendChild(container);
 }
@@ -102,7 +104,6 @@ function processGeminiData(data) {
     const content = data.candidates[0]?.content?.parts?.[0]?.text;
     return content || "No content found";
 }
-
 
 function searchWikipedia(query) {
     const url = `https://en.wikipedia.org/w/api.php?action=query&list=search&srsearch=${query}&format=json&origin=*`;

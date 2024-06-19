@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Search Engine Interface</title>
     <link rel="stylesheet" href="styles.css">
-    <script async src="https://cse.google.com/cse.js?cx=d5ccd916f0d4241a8"></script>
 </head>
 <body>
     <div class="container">
@@ -15,26 +14,32 @@
                 <div id="search-engine-info">
                     Please select a search engine.
                 </div>
-                <select id="search-engine" onchange="toggleSearchBox()">
+                <select id="search-engine" onchange="redirectToSearchPage()">
                     <option value="select-engine">Choose</option>
                     <option value="google">Google</option>
                     <option value="gemini">Gemini</option>
                     <option value="wikipedia">Wikipedia</option>
                 </select>
             </div>
-            <div id="custom-search" style="display: none;">
-                <input type="text" id="search-query" placeholder="Enter your search query...">
-                <button onclick="performSearch()">Search</button>
-            </div>
-            <div id="google-search-box" style="display: none;">
-                <gcse:searchbox-only></gcse:searchbox-only>
-            </div>
-        </div>
-        <div class="results">
-            <div id="google-results" class="gcse-searchresults-only"></div>
-            <ul id="results-list"></ul>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        function redirectToSearchPage() {
+            const searchEngine = document.getElementById('search-engine').value;
+            navigateToSearchEngine(searchEngine);
+        }
+        function navigateToSearchEngine(searchEngine) {
+            if(searchEngine == 'google') {
+                history.pushState({ page: 'google' }, '', 'google.html');
+                window.location.href = 'google.html';
+            } else if (searchEngine == 'gemini') {
+                history.pushState({ page: 'gemini' }, '', 'gemini.html');
+                window.location.href = 'gemini.html';
+            } else if (searchEngine == 'wikipedia') {
+                history.pushState({ page: 'wikipedia' }, '', 'wikipedia.html');
+                window.location.href = 'wikipedia.html';
+            }
+        }
+    </script>
 </body>
 </html>
