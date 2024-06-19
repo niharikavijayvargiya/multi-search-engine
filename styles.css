@@ -22,7 +22,7 @@ h1 {
 .search-buttons {
     display: flex;
     justify-content: center;
-    gap: 100px;
+    gap: 70px;
 }
 .google-search-button {
     padding: 10px 20px;
