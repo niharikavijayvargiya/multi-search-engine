@@ -72,14 +72,16 @@ function displayGeminiResults(text) {
         const interval = setInterval(() => {
             dotCount = (dotCount % 3) + 1; // Cycle through 3 dots
             waitMessage.textContent = `${text}${'.'.repeat(dotCount)}`;
-        }, 500); // Interval for adding dots (500ms)
+        }, 350); // Interval for adding dots (500ms)
 
         // Stop interval when content is loaded
         window.addEventListener('load', () => {
             clearInterval(interval);
             waitMessage.textContent = "Content loaded."; // Replace with loaded message
         });
-    } else {
+
+    }    else {
+
         // Display regular content
         const sections = text.split('\n\n');
         sections.forEach(section => {

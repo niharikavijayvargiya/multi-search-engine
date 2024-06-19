@@ -8,8 +8,16 @@
     <script src="script.js" defer></script>
 </head>
 <body class="gemini-background">
+    <header>
+        <div class="header-buttons">
+            <button class="header-button home" onclick="redirectToPage('index.html')">Home</button>
+            <button class="header-button google" onclick="redirectToPage('google.html')">Google</button>
+            <button class="header-button gemini" onclick="redirectToPage('gemini.html')">Gemini</button>
+            <button class="header-button wikipedia" onclick="redirectToPage('wikipedia.html')">Wikipedia</button>
+        </div>
+    </header>
     <div class="container">
-        <div class="google-image">
+        <div class="engine-image">
             <img src="./images/gimini.png" alt="Gemini Image">
         </div>
         <h1 class="help-text">How may I help you?</h1>
@@ -33,6 +41,9 @@
         </div>
     </div>
     <script>
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
         window.addEventListener('popstate', (event) => {
             window.location.href = 'index.html';
         });

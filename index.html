@@ -9,33 +9,21 @@
 <body>
     <div class="container">
         <h1>Multi-Search Engine Interface</h1>
-        <div class="search-bar">
-            <div class="search-info">
-                <div id="search-engine-info">
-                    Please select a search engine.
-                </div>
-                <select id="search-engine" onchange="redirectToSearchPage()">
-                    <option value="select-engine">Choose</option>
-                    <option value="google">Google</option>
-                    <option value="gemini">Gemini</option>
-                    <option value="wikipedia">Wikipedia</option>
-                </select>
-            </div>
+        <div class="search-buttons">
+            <button class="google-search-button" onclick="redirectToSearchPage('google')">Google</button>
+            <button class="gemini-search-button" onclick="redirectToSearchPage('gemini')">Gemini</button>
+            <button class="wiki-search-button" onclick="redirectToSearchPage('wikipedia')">Wikipedia</button>
         </div>
     </div>
     <script>
-        function redirectToSearchPage() {
-            const searchEngine = document.getElementById('search-engine').value;
-            navigateToSearchEngine(searchEngine);
-        }
-        function navigateToSearchEngine(searchEngine) {
-            if(searchEngine == 'google') {
+        function redirectToSearchPage(searchEngine) {
+            if(searchEngine === 'google') {
                 history.pushState({ page: 'google' }, '', 'google.html');
                 window.location.href = 'google.html';
-            } else if (searchEngine == 'gemini') {
+            } else if (searchEngine === 'gemini') {
                 history.pushState({ page: 'gemini' }, '', 'gemini.html');
                 window.location.href = 'gemini.html';
-            } else if (searchEngine == 'wikipedia') {
+            } else if (searchEngine === 'wikipedia') {
                 history.pushState({ page: 'wikipedia' }, '', 'wikipedia.html');
                 window.location.href = 'wikipedia.html';
             }

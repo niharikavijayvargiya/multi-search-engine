@@ -8,8 +8,16 @@
     <script async src="https://cse.google.com/cse.js?cx=d5ccd916f0d4241a8"></script>
 </head>
 <body class="google-background">
+    <header>
+        <div class="header-buttons">
+            <button class="header-button home" onclick="redirectToPage('index.html')">Home</button>
+            <button class="header-button google" onclick="redirectToPage('google.html')">Google</button>
+            <button class="header-button gemini" onclick="redirectToPage('gemini.html')">Gemini</button>
+            <button class="header-button wikipedia" onclick="redirectToPage('wikipedia.html')">Wikipedia</button>
+        </div>
+    </header>
     <div class="container">
-        <div class="google-image">
+        <div class="engine-image">
             <img src="https://duet-cdn.vox-cdn.com/thumbor/0x0:2012x1341/1200x800/filters:focal(1006x670:1007x671):format(webp)/cdn.vox-cdn.com/uploads/chorus_asset/file/15483559/google2.0.0.1441125613.jpg" alt="Google Image">
         </div>
         <div class="google-search-bar">
@@ -20,6 +28,10 @@
         </div>
     </div>
     <script>
+        function redirectToPage(page) {
+            window.location.href = page;
+        }
+
         window.addEventListener('popstate', (event) => {
             window.location.href = 'index.html';
         });

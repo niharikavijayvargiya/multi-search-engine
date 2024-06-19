@@ -11,6 +11,63 @@ body {
     width: 80%;
     margin: 50px auto;
 }
+h1 {
+    font-size: 48px; /* Very large font size */
+    font-weight: bold;
+    margin-bottom: 50px;
+    position: relative; /* Required for animation */
+    animation: enlarge 1s ease-in-out infinite alternate; /* Animation definition */
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+}
+.google-search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.google-search-button:hover {
+    background-color: #357ae8; 
+    transform: scale(1.05);
+}
+.gemini-search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.gemini-search-button:hover {
+    background-color: #e64a19;
+    transform: scale(1.05); 
+}
+
+.wiki-search-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #33691e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.wiki-search-button:hover {
+    background-color: #1b5e20;
+    transform: scale(1.05); 
+}
+
 .search-bar {
     margin-top: 20px;
     align-items: center;
@@ -115,7 +172,7 @@ button {
     background-repeat: no-repeat;
 }
 
-.google-image img {
+.engine-image img {
     width: 100%;
     max-width: 600px;
     border-radius: 8px;
@@ -162,7 +219,7 @@ button {
 }
 
 .column:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px);
 }
 
 .column h2 {
@@ -170,13 +227,7 @@ button {
     margin-bottom: 10px;
     color: #1a0dab; /* Google blue */
 }
-h1 {
-    font-size: 48px; /* Very large font size */
-    font-weight: bold;
-    margin-bottom: 20px;
-    position: relative; /* Required for animation */
-    animation: enlarge 1s ease-in-out infinite alternate; /* Animation definition */
-}
+
 
 @keyframes enlarge {
     from {
@@ -186,3 +237,42 @@ h1 {
         transform: scale(1.1);
     }
 }
+
+/* Header styles */
+header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.header-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.header-button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header-button.home { background-color: #666666; color: white; }
+.header-button.home:hover { background-color: #555555; transform: scale(1.05); }
+.header-button.google { background-color: #4285f4; color: white; }
+.header-button.google:hover { background-color: #357ae8; transform: scale(1.05); }
+.header-button.gemini { background-color: #ff7043; color: white; }
+.header-button.gemini:hover { background-color: #e64a19; transform: scale(1.05); }
+.header-button.wikipedia { background-color: #33691e; color: white; }
+.header-button.wikipedia:hover { background-color: #1b5e20; transform: scale(1.05); }
+
+
+
+
+
