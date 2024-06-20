@@ -109,6 +109,8 @@ header {
         font-size: 12px; /* Adjust button font size */
     }
 }
+```
+
 ## Adding More Search Engines
 
 To add more search engines:
