@@ -1,116 +1,31 @@
-Multi-Search Engine Interface
-Overview
+# Multi-Search Engine Interface
+
+## Overview
+
 The Multi-Search Engine Interface is a web application that allows users to select and redirect to different search engines, including Google, Gemini, and Wikipedia, from a central interface. The application is designed with a responsive layout, ensuring it works well on various devices and screen sizes.
 
-Features
-Home Page: Central interface to select from Google, Gemini, or Wikipedia search engines.
-Search Engine Pages: Dedicated pages for each search engine with their specific search functionalities.
-Responsive Design: Ensures the application works on different screen sizes and devices.
-Dynamic Header: Consistent header across all pages with navigation buttons to switch between search engines and the home page.
-Technologies Used
-HTML
-CSS
-JavaScript
-Getting Started
-Prerequisites
-Web browser (Chrome, Firefox, Safari, etc.)
-Text editor (VS Code, Sublime Text, etc.)
-Installation
-Clone the repository:
-sh
-Copy code
-git clone https://github.com/your-username/multi-search-engine-interface.git
-Navigate to the project directory:
-sh
-Copy code
-cd multi-search-engine-interface
-File Structure
-sql
-Copy code
-multi-search-engine-interface/
-│
-├── index.html
-├── google.html
-├── gemini.html
-├── wikipedia.html
-├── styles.css
-├── images/
-│   └── multi-search-engine-logo.png
-├── scripts/
-│   └── script.js
-└── README.md
-How to Run
-Open index.html in a web browser:
-Simply double-click the index.html file, or open it with your web browser.
-Customization
-Update the Background Image:
-Replace multi-search-engine-logo.png in the images directory with your preferred background image.
+## Features
 
-Modify Styles:
-Update styles.css to change the look and feel of the interface.
+- **Home Page**: Central interface to select from Google, Gemini, or Wikipedia search engines.
+- **Search Engine Pages**: Dedicated pages for each search engine with their specific search functionalities.
+- **Responsive Design**: Ensures the application works on different screen sizes and devices.
+- **Dynamic Header**: Consistent header across all pages with navigation buttons to switch between search engines and the home page.
 
-CSS Media Queries for Responsive Design
-To ensure the header and other elements are responsive, the following media queries are used in styles.css:
+## Technologies Used
 
-css
-Copy code
-/* Default styles for header */
-header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: white;
-    width: 100%;
-    box-sizing: border-box;
-}
+- HTML
+- CSS
+- JavaScript
 
-.header-buttons {
-    display: flex;
-    gap: 10px;
-}
+## Getting Started
 
-.header-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
+### Prerequisites
 
-/* Adjustments for smaller screens */
-@media (max-width: 576px) {
-    header {
-        justify-content: center; /* Center align buttons on smaller screens */
-        padding: 10px; /* Adjust padding */
-    }
+- Web browser (Chrome, Firefox, Safari, etc.)
+- Text editor (VS Code, Sublime Text, etc.)
 
-    .header-buttons {
-        flex-wrap: wrap; /* Wrap buttons to new line */
-        justify-content: center; /* Center buttons */
-    }
+### Installation
 
-    .header-button {
-        padding: 8px 12px; /* Adjust button padding */
-        font-size: 12px; /* Adjust button font size */
-    }
-}
-Adding More Search Engines
-To add more search engines:
-
-Create a new HTML file for the search engine:
-
-sh
-Copy code
-touch new_search_engine.html
-Update index.html and header:
-Add a button for the new search engine and link it to the new HTML file.
-
-Implement the search functionality:
-Add necessary JavaScript or embed code for the new search engine in the new HTML file.
-
-Acknowledgments
-Thanks to the contributors of various libraries and tools used in this project.
-Contact
-For any inquiries or issues, please contact niharikajivijay@gmail.com.
+1. **Clone the repository**:
+   ```sh
+   git clone https://github.com/your-username/multi-search-engine-interface.git
